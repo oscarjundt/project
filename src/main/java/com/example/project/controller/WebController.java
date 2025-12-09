@@ -1,16 +1,13 @@
 package com.example.project.controller;
 
+import com.example.project.entity.Experience;
 import com.example.project.entity.Users;
-import com.example.project.security.WebService;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import com.example.project.service.WebService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.thymeleaf.spring6.expression.SpringStandardExpressions;
 
 @Controller
 public class WebController {
@@ -34,17 +31,27 @@ public class WebController {
     }
 
     @GetMapping("/{id}")
-    public String users(ModelMap modelMap, @PathVariable(value = "id") Long id) {
+    public String user(ModelMap modelMap, @PathVariable(value = "id") Long id) {
         Users user = webService.getUser(id);
         if (user == null) {
             return "redirect:/";
         }
         modelMap.put("users", user);
-        modelMap.put("education", user.getEducation());
-        modelMap.put("experience", user.getExperience());
+        modelMap.put("educations", user.getEducation());
+        modelMap.put("experiences", user.getExperience());
         modelMap.put("skills", webService.getSkills(user));
 
         return "home";
+    }
+
+    @GetMapping("/experience/{id}")
+    public String experiences(ModelMap modelMap, @PathVariable(value = "id") Long id) {
+        Experience experience = webService.experience(id);
+        if (experience == null) {
+            return "redirect:/";
+        }
+        modelMap.put("experiences", experience);
+        return "experience";
     }
 
 }

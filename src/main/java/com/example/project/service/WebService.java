@@ -1,9 +1,12 @@
-package com.example.project.security;
+package com.example.project.service;
 
 import com.example.project.entity.Education;
 import com.example.project.entity.Experience;
 import com.example.project.entity.Skills;
 import com.example.project.entity.Users;
+import com.example.project.repository.EducationRepository;
+import com.example.project.repository.ExperienceRepository;
+import com.example.project.repository.SkillsRepository;
 import com.example.project.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +18,35 @@ import java.util.Optional;
 public class WebService {
     private final UsersRepository usersRepository;
 
-    public WebService(UsersRepository usersRepository) {
+    private final ExperienceRepository experienceRepository;
+
+    private final SkillsRepository skillsRepository;
+
+    private final EducationRepository educationRepository;
+
+    public WebService(UsersRepository usersRepository,
+                      ExperienceRepository experienceRepository,
+                      SkillsRepository skillsRepository,
+                      EducationRepository educationRepository) {
         this.usersRepository = usersRepository;
+        this.experienceRepository = experienceRepository;
+        this.skillsRepository = skillsRepository;
+        this.educationRepository = educationRepository;
+    }
+
+    public Experience experience(long id) {
+        Optional<Experience> experience = experienceRepository.findById(id);
+        return experience.orElse(null);
+    }
+
+    public Education education(long id) {
+        Optional<Education> education = educationRepository.findById(id);
+        return education.orElse(null);
+    }
+
+    public Skills skills(long id) {
+        Optional<Skills> experience = skillsRepository.findById(id);
+        return experience.orElse(null);
     }
 
     public List<Users> getUsers() {

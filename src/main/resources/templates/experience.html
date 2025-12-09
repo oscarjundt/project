@@ -12,29 +12,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.min.css">
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.min.js"></script>
-    <title>PortFolio</title>
+    <title th:text="${experiences?.getLabel()}"></title>
 </head>
 <body>
 <header>
     <nav class="bg-light border-bottom text-center">
-        <h1>Site PortFolio</h1>
+        <h1 th:text="${experiences?.getLabel()}"></h1>
     </nav>
 </header>
 <section>
-    <div class="card m-3">
-        <div class="card-header">
-            <h3>Liste des utilisateurs</h3>
-            <!--<form method="get" action="/search">
-                <input type="text" class="form-control" name="search">
-            </form>-->
-        </div>
-        <div class="card-body">
-            <div class="list-group m-3">
-                <a th:each="tag:${users}" class='list-group-item list-group-item-action act' target='_blank'
-                   th:href="@{'/'+${tag.getId()}}" th:text="${tag.getUsername()}"></a>
-            </div>
-        </div>
-    </div>
 </section>
 <footer>
     <!-- Bootstrap core JS-->
