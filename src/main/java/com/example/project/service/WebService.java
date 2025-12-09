@@ -75,10 +75,18 @@ public class WebService {
 
     public List<Skills> getSkills(Users user) {
         List<Skills> skills = new ArrayList<>();
-        user.getEducation().forEach(e -> skills.addAll(e.getSkills()));
-        user.getExperience().forEach(e -> skills.addAll(e.getSkills()));
-        return skills;
+        if (user.getEducation() != null) {
+            skills = user.getEducation().stream()
+                    .filter(e -> e.getSkills() != null)
+                    .flatMap(e -> e.getSkills().stream())
+                    .toList();
+        }
+        if (user.getExperience() != null) {
+            skills = user.getExperience().stream()
+                    .filter(e -> e.getSkills() != null)
+                    .flatMap(e -> e.getSkills().stream())
+                    .toList();
+        }
+        return skills.isEmpty() ? null : skills;
     }
-
-
 }

@@ -27,12 +27,25 @@ public class Education {
     @JoinColumn(name = "user_id", nullable = false)
     private Users users;
 
+    public Education() {
+    }
+
+    public Education(String degree, String school, LocalDate startDate, LocalDate endDate) {
+        this.degree = degree;
+        this.school = school;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     @ManyToMany()
     @JoinTable(
             name = "education_skills",
             joinColumns = @JoinColumn(name = "education_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
+
+
+
     private List<Skills> skills;
 
     public Long getId() {

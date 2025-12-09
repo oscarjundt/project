@@ -39,6 +39,24 @@ public class Users {
     @JsonIgnore
     private List<Education> education;
 
+    public Users(){
+
+    }
+
+    public Users(
+                 String username,
+                 String password,
+                 String role,
+                 String address,
+                 String numberPhone,
+                 String descp) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.address = address;
+        this.numberPhone = numberPhone;
+        this.descp = descp;
+    }
 
     public Long getId() {
         return id;

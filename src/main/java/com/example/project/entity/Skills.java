@@ -19,6 +19,9 @@ public class Skills {
     @ManyToMany(mappedBy = "skills")
     private List<Experience> experiences;
 
+    public Skills() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -36,6 +36,20 @@ public class Experience {
     )
     private List<Skills> skills;
 
+    public Experience(){
+
+    }
+
+    public Experience(String status,
+                      String label,
+                      LocalDate startDate
+    ) {
+        this.status = status;
+        this.label = label;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.descp = descp;
+    }
 
     public Long getId() {
         return id;
