@@ -5,6 +5,12 @@
     <title></title>
 </head>
 <body>
+<form method="get" action="/search">
+    <input type="text" name="search">
+</form>
+<div class="list-group m-3" >
+    <a th:each="tag:${users}" class='list-group-item list-group-item-action act' target='_blank'  th:href="@{'/'+${tag.getId()}}" th:text="${tag.getUsername()}" ></a>
+</div>
 
 </body>
 </html>
