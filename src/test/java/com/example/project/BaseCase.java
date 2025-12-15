@@ -7,21 +7,17 @@ import com.example.project.repository.ExperienceRepository;
 import com.example.project.repository.SkillsRepository;
 import com.example.project.repository.UsersRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
-@SpringBootTest
-class ParentTests {
+class BaseCase {
     protected final ExperienceRepository experienceRepository;
 
     protected final UsersRepository usersRepository;
 
     protected final SkillsRepository skillsRepository;
 
-    @Autowired
-    public ParentTests(ExperienceRepository experienceRepository, UsersRepository usersRepository, SkillsRepository skillsRepository) {
+    public BaseCase(ExperienceRepository experienceRepository, UsersRepository usersRepository, SkillsRepository skillsRepository) {
         this.experienceRepository = experienceRepository;
         this.usersRepository = usersRepository;
         this.skillsRepository = skillsRepository;

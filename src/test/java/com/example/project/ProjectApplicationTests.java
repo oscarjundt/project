@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-class ProjectApplicationTests extends ParentTests {
+class ProjectApplicationTests extends BaseCase {
 
     @Autowired
     public ProjectApplicationTests(
@@ -30,7 +30,7 @@ class ProjectApplicationTests extends ParentTests {
 
     @Test
     @Transactional
-    void contextLoads3() {
+    void should_save_user_with_experience() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -49,7 +49,7 @@ class ProjectApplicationTests extends ParentTests {
 
     @Test
     @Transactional
-    void contextLoads4() {
+    void should_save_user_with_experience_and_skills() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -74,7 +74,7 @@ class ProjectApplicationTests extends ParentTests {
 
     @Test
     @Transactional
-    void contextLoads5() {
+    void should_save_user_with_education_and_skills() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);

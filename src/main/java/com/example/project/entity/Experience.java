@@ -36,7 +36,7 @@ public class Experience {
     )
     private List<Skills> skills;
 
-    public Experience(){
+    public Experience() {
 
     }
 
@@ -47,8 +47,6 @@ public class Experience {
         this.status = status;
         this.label = label;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.descp = descp;
     }
 
     public Long getId() {

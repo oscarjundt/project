@@ -19,7 +19,7 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-class WebServiceTests extends ParentTests {
+class WebServiceTests extends BaseCase {
 
     private final WebService webService;
 
@@ -34,7 +34,7 @@ class WebServiceTests extends ParentTests {
     }
 
     @Test
-    void test() {
+    void should_return_null_when_user_experience_and_education_do_not_exist() {
         Assertions.assertNull(webService.getUser(1L));
         Assertions.assertNull(webService.getEducation(1L));
         Assertions.assertNull(webService.getExperience(1L));
@@ -42,12 +42,12 @@ class WebServiceTests extends ParentTests {
 
 
     @Test
-    void test2() {
+    void should_return_null_when_user_id_is_invalid() {
         Assertions.assertNull(webService.getUser('l'));
     }
 
     @Test
-    void test3() {
+    void should_return_experience_but_no_skills_and_no_education() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -67,7 +67,7 @@ class WebServiceTests extends ParentTests {
     }
 
     @Test
-    void test4() {
+    void should_return_experience_and_skills_but_no_educatio() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -92,7 +92,7 @@ class WebServiceTests extends ParentTests {
     }
 
     @Test
-    void test5() {
+    void should_return_education_and_skills_but_no_experience() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);

@@ -1,5 +1,6 @@
 package com.example.project.controller;
 
+import com.example.project.entity.Education;
 import com.example.project.entity.Experience;
 import com.example.project.entity.Users;
 import com.example.project.service.WebService;
@@ -45,13 +46,23 @@ public class WebController {
     }
 
     @GetMapping("/experience/{id}")
-    public String experiences(ModelMap modelMap, @PathVariable(value = "id") Long id) {
+    public String experience(ModelMap modelMap, @PathVariable(value = "id") Long id) {
         Experience experience = webService.experience(id);
         if (experience == null) {
             return "redirect:/";
         }
-        modelMap.put("experiences", experience);
+        modelMap.put("experience", experience);
         return "experience";
     }
 
+
+    @GetMapping("/education/{id}")
+    public String education(ModelMap modelMap, @PathVariable(value = "id") Long id) {
+        Education education = webService.education(id);
+        if (education == null) {
+            return "redirect:/";
+        }
+        modelMap.put("education", education);
+        return "education";
+    }
 }
