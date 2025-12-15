@@ -7,6 +7,7 @@ import com.example.project.entity.Users;
 import com.example.project.repository.ExperienceRepository;
 import com.example.project.repository.SkillsRepository;
 import com.example.project.repository.UsersRepository;
+import com.example.project.service.WebService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,20 +18,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-class ProjectApplicationTests extends BaseCase {
+@Transactional
+class WebServiceTests extends BaseCase {
+
+    private final WebService webService;
 
     @Autowired
-    public ProjectApplicationTests(
+    public WebServiceTests(
             ExperienceRepository experienceRepository,
             UsersRepository usersRepository,
-            SkillsRepository skillsRepository
+            SkillsRepository skillsRepository, WebService webService
     ) {
         super(experienceRepository, usersRepository, skillsRepository);
+        this.webService = webService;
     }
 
     @Test
-    @Transactional
-    void should_save_user_with_experience() {
+    void should_return_null_when_user_experience_and_education_do_not_exist() {
+        Assertions.assertNull(webService.getUser(1L));
+        Assertions.assertNull(webService.getEducation(1L));
+        Assertions.assertNull(webService.getExperience(1L));
+    }
+
+
+    @Test
+    void should_return_null_when_user_id_is_invalid() {
+        Assertions.assertNull(webService.getUser('l'));
+    }
+
+    @Test
+    void should_return_experience_but_no_skills_and_no_education() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -41,15 +58,16 @@ class ProjectApplicationTests extends BaseCase {
         experiences.add(experience);
         user.setExperience(experiences);
         usersRepository.save(user);
-        Assertions.assertTrue(usersRepository.findById(user.getId()).isPresent());
+        Assertions.assertNotNull(webService.getExperience(user.getId()));
 
-        List<Experience> experiences1 = usersRepository.findById(user.getId()).get().getExperience();
-        Assertions.assertFalse(experiences1.isEmpty());
+        Assertions.assertNull(webService.getSkills(user));
+
+        Assertions.assertNull(webService.getEducation(user.getId()));
+
     }
 
     @Test
-    @Transactional
-    void should_save_user_with_experience_and_skills() {
+    void should_return_experience_and_skills_but_no_educatio() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -65,16 +83,16 @@ class ProjectApplicationTests extends BaseCase {
         skills.add(skill);
         experience.setSkills(skills);
         usersRepository.save(user);
-        Assertions.assertTrue(usersRepository.findById(user.getId()).isPresent());
+        Assertions.assertNotNull(webService.getExperience(user.getId()));
 
-        List<Experience> experiences1 = usersRepository.findById(user.getId()).get().getExperience();
-        Assertions.assertFalse(experiences1.isEmpty());
-        Assertions.assertFalse(experiences1.get(0).getSkills().isEmpty());
+        Assertions.assertNotNull(webService.getSkills(user));
+
+        Assertions.assertNull(webService.getEducation(user.getId()));
+
     }
 
     @Test
-    @Transactional
-    void should_save_user_with_education_and_skills() {
+    void should_return_education_and_skills_but_no_experience() {
         Users users = createUser();
         usersRepository.save(users);
         Users user = usersRepository.findById(users.getId()).orElse(null);
@@ -90,10 +108,12 @@ class ProjectApplicationTests extends BaseCase {
         skills.add(skill);
         education.setSkills(skills);
         usersRepository.save(user);
-        Assertions.assertTrue(usersRepository.findById(user.getId()).isPresent());
-        List<Education> educations1 = usersRepository.findById(user.getId()).get().getEducation();
-        Assertions.assertFalse(educations1.isEmpty());
-        Assertions.assertFalse(educations1.get(0).getSkills().isEmpty());
+        Assertions.assertNull(webService.getExperience(user.getId()));
+
+        Assertions.assertNotNull(webService.getSkills(user));
+
+        Assertions.assertNotNull(webService.getEducation(user.getId()));
+
     }
 
 }
