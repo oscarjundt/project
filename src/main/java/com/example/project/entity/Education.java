@@ -3,7 +3,7 @@ package com.example.project.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Education {
@@ -23,6 +23,9 @@ public class Education {
     @Column(nullable = false)
     private LocalDate endDate;
 
+    @Column(nullable = false)
+    private String level;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users users;
@@ -30,11 +33,16 @@ public class Education {
     public Education() {
     }
 
-    public Education(String degree, String school, LocalDate startDate, LocalDate endDate) {
+    public Education(String degree,
+                     String school,
+                     LocalDate startDate,
+                     LocalDate endDate,
+                     String level) {
         this.degree = degree;
         this.school = school;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.level = level;
     }
 
     @ManyToMany()
@@ -45,8 +53,7 @@ public class Education {
     )
 
 
-
-    private List<Skills> skills;
+    private Set<Skills> skills;
 
     public Long getId() {
         return id;
@@ -96,11 +103,19 @@ public class Education {
         this.users = users;
     }
 
-    public List<Skills> getSkills() {
+    public Set<Skills> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<Skills> skills) {
+    public void setSkills(Set<Skills> skills) {
         this.skills = skills;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

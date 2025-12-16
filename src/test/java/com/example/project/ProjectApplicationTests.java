@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 class ProjectApplicationTests extends BaseCase {
@@ -61,7 +63,7 @@ class ProjectApplicationTests extends BaseCase {
         user.setExperience(experiences);
         Skills skill = new Skills();
         skill.setLabel("Java");
-        List<Skills> skills = new ArrayList<>();
+        Set<Skills> skills = new HashSet<>();
         skills.add(skill);
         experience.setSkills(skills);
         usersRepository.save(user);
@@ -86,7 +88,7 @@ class ProjectApplicationTests extends BaseCase {
         user.setEducation(educations);
         Skills skill = new Skills();
         skill.setLabel("Java");
-        List<Skills> skills = new ArrayList<>();
+        Set<Skills> skills = new HashSet<>();
         skills.add(skill);
         education.setSkills(skills);
         usersRepository.save(user);
