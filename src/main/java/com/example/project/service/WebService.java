@@ -79,12 +79,14 @@ public class WebService {
             skills = user.getEducation().stream()
                     .filter(e -> e.getSkills() != null)
                     .flatMap(e -> e.getSkills().stream())
+                    .distinct()
                     .toList();
         }
         if (user.getExperience() != null) {
             skills = user.getExperience().stream()
                     .filter(e -> e.getSkills() != null)
                     .flatMap(e -> e.getSkills().stream())
+                    .distinct()
                     .toList();
         }
         return skills.isEmpty() ? null : skills;

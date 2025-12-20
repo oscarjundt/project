@@ -11,6 +11,9 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String name;
+
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -39,17 +42,19 @@ public class Users {
     @JsonIgnore
     private List<Education> education;
 
-    public Users(){
+    public Users() {
 
     }
 
     public Users(
-                 String username,
-                 String password,
-                 String role,
-                 String address,
-                 String numberPhone,
-                 String descp) {
+            String name,
+            String username,
+            String password,
+            String role,
+            String address,
+            String numberPhone,
+            String descp) {
+        this.name = name;
         this.username = username;
         this.password = password;
         this.role = role;
@@ -136,5 +141,13 @@ public class Users {
 
     public void setEducation(List<Education> education) {
         this.education = education;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

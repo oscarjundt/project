@@ -32,7 +32,8 @@ class BaseCase {
 
     protected Users createUser() {
         return new Users(
-                "oscar",
+                "Oscar Jundt",
+                "jundt@gmail.com",
                 "",
                 "ADMIN",
                 "Bogota",
@@ -46,7 +47,8 @@ class BaseCase {
                 "ipi",
                 "ipi",
                 LocalDate.now(),
-                LocalDate.now()
+                LocalDate.now(),
+                "Bac+5"
         );
     }
 

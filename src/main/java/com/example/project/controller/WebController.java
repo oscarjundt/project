@@ -51,7 +51,9 @@ public class WebController {
         if (experience == null) {
             return "redirect:/";
         }
+        modelMap.put("userId", experience.getUsers().getId());
         modelMap.put("experience", experience);
+        modelMap.put("skills", experience.getSkills().stream().toList());
         return "experience";
     }
 
@@ -62,7 +64,9 @@ public class WebController {
         if (education == null) {
             return "redirect:/";
         }
+        modelMap.put("userId", education.getUsers().getId());
         modelMap.put("education", education);
+        modelMap.put("skills", education.getSkills().stream().toList());
         return "education";
     }
 }

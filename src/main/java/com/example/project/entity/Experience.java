@@ -3,7 +3,7 @@ package com.example.project.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Experience {
@@ -16,6 +16,9 @@ public class Experience {
 
     @Column(nullable = false)
     private String label;
+
+    @Column(nullable = false)
+    private String company;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -34,7 +37,7 @@ public class Experience {
             joinColumns = @JoinColumn(name = "experience_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
-    private List<Skills> skills;
+    private Set<Skills> skills;
 
     public Experience() {
 
@@ -105,11 +108,19 @@ public class Experience {
         this.users = users;
     }
 
-    public List<Skills> getSkills() {
+    public Set<Skills> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<Skills> skills) {
+    public void setSkills(Set<Skills> skills) {
         this.skills = skills;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 }
