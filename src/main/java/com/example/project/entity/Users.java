@@ -36,10 +36,12 @@ public class Users {
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @OrderBy("startDate DESC")
     private List<Experience> experience;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
+    @OrderBy("endDate DESC,startDate DESC")
     private List<Education> education;
 
     public Users() {

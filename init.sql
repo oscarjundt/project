@@ -103,8 +103,9 @@ DROP TABLE IF EXISTS `skills`;
 CREATE TABLE `skills` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,4 +140,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-19  2:35:58
+-- Dump completed on 2025-12-25 16:15:34

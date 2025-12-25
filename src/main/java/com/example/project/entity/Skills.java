@@ -13,6 +13,9 @@ public class Skills {
     @Column(nullable = false)
     private String label;
 
+    @Column(nullable = false)
+    private Integer position;
+
     @ManyToMany(mappedBy = "skills")
     private List<Education> education;
 
@@ -52,5 +55,13 @@ public class Skills {
 
     public void setExperiences(List<Experience> experiences) {
         this.experiences = experiences;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

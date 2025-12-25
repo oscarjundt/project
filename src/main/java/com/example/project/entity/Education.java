@@ -45,14 +45,13 @@ public class Education {
         this.level = level;
     }
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
             name = "education_skills",
             joinColumns = @JoinColumn(name = "education_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
-
-
+    @OrderBy("position ASC")
     private Set<Skills> skills;
 
     public Long getId() {

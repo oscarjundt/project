@@ -6,10 +6,9 @@
     </th:block>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<header>
-    <nav class="bg-light border-bottom text-center">
-        <h1 th:text="${education?.degree}"></h1>
-    </nav>
+<header class="bg-light border-bottom text-center p-2">
+    <h1 th:text="${education?.degree}"></h1>
+    <h6 th:text="${education?.school}"></h6>
 </header>
 <section>
     <a th:href="|/${userId}|">
@@ -20,6 +19,17 @@
             <h3>Global description</h3>
         </div>
         <div class="card-body">
+            <div class="row text-center">
+                <p class="col">
+                    Start date: <span th:text="${education.startDate}"></span>
+                </p>
+                <p class="col">
+                    End date: <span th:text="${education.endDate ?: 'Today'}"></span>
+                </p>
+                <p class="col">
+                    Level of education: <span th:text="${education.level}"></span>
+                </p>
+            </div>
         </div>
     </div>
     <div class="card m-3">

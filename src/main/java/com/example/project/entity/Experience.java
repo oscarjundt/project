@@ -31,12 +31,13 @@ public class Experience {
     @JoinColumn(name = "user_id", nullable = false)
     private Users users;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
             name = "experience_skills",
             joinColumns = @JoinColumn(name = "experience_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id")
     )
+    @OrderBy("position ASC")
     private Set<Skills> skills;
 
     public Experience() {
@@ -45,11 +46,13 @@ public class Experience {
 
     public Experience(String status,
                       String label,
-                      LocalDate startDate
+                      LocalDate startDate,
+                      String company
     ) {
         this.status = status;
         this.label = label;
         this.startDate = startDate;
+        this.company = company;
     }
 
     public Long getId() {
