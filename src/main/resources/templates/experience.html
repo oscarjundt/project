@@ -6,7 +6,7 @@
     </th:block>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<header class="bg-light border-bottom text-center p-2">
+<header class="bg-light border-bottom text-center p-2 shadow">
     <h1 th:text="${experience?.label}"></h1>
     <h6 th:text="${experience?.status}"></h6>
 </header>
@@ -14,7 +14,7 @@
     <a th:href="|/${userId}|">
         <i class="bi bi-arrow-left-circle-fill"></i>Back
     </a>
-    <div class="card m-3">
+    <div class="card m-3 shadow">
         <div class="card-header">
             <h3>Global description</h3>
         </div>
@@ -32,7 +32,7 @@
             </p>
         </div>
     </div>
-    <div class="card m-3">
+    <div class="card m-3 shadow">
         <div class="card-header">
             <h3>List of Skills</h3>
         </div>
